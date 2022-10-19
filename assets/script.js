@@ -1,11 +1,14 @@
 var today = moment().format("dddd, MMMM Do YYYY, h:mm:ss")
 $("#currentDay").text(today);
 
-const saveBtn = $("#save");
 
-document.getElementById("textbox9am").value = localStorage.getItem("9amnote");
+$(document).ready(function () {
+    $(".saveBtn").on("click", function () {
+        var text = $(this).siblings(".description").val();
+        var time = $(this).parent().attr("id");
+        localStorage.setItem(time, text);
+    })
+})
 
-saveBtn.on('click', function () {
-    localStorage.setItem("9amnote", document.getElementById("textbox9am").value)
-    console.log(document.getElementById("textbox9am").value)
-  });
+
+$("#hour9 .description").val(localStorage.getItem("hour9"));
